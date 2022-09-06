@@ -8,8 +8,8 @@ namespace WebMarketplace.Controllers
 {
     public class AccountController : Controller
     {
-        private UserManager<IdentityUser> _userManager;
-        private SignInManager<IdentityUser> _signInManager;
+        private readonly UserManager<IdentityUser> _userManager;
+        private readonly SignInManager<IdentityUser> _signInManager;
 
         public AccountController(UserManager<IdentityUser> userManager, SignInManager<IdentityUser> signInManager)
         {
@@ -35,19 +35,15 @@ namespace WebMarketplace.Controllers
                 loginViewModel.RememberMe, true);
                 
             if (result.Succeeded) return RedirectToAction("Index", "Home");
-            if (result.IsLockedOut) return View("Lockout");
 
             ModelState.AddModelError(string.Empty, "Invalid login attempt.");
             return View(loginViewModel);
 
         }
 
-        public async Task<IActionResult> Register(string? returnUrl = null)
+        public async Task<IActionResult> Register()
         {
-            var registerViewModel = new RegisterViewModel
-            {
-                ReturnUrl = returnUrl
-            };
+            var registerViewModel = new RegisterViewModel();
             return View(registerViewModel);
         }
 
@@ -55,7 +51,7 @@ namespace WebMarketplace.Controllers
         public async Task<IActionResult> Register(RegisterViewModel registerViewModel)
         {
             if (!ModelState.IsValid) return View(registerViewModel);
-            var user = new AppUser{ UserName = registerViewModel.UserName};
+            var user = new AppUser { UserName = registerViewModel.UserName,  };
             var result = await _userManager.CreateAsync(user, registerViewModel.Password);
 
             if (result.Succeeded)

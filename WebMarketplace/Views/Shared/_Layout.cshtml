@@ -1,7 +1,7 @@
 ﻿@using Microsoft.AspNetCore.Identity
 
-@inject SignInManager<IdentityUser> SignInManager;
-@inject UserManager<IdentityUser> UserManager;
+@inject SignInManager<IdentityUser> _signInManager;
+@inject UserManager<IdentityUser> _userManager;
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -14,50 +14,33 @@
 </head>
 <body>
 <header>
-    <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-        <div class="container-fluid">
-            <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">WebMarketplace</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                    aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                <ul class="navbar-nav flex-grow-1">
-                    <li class="nav-item">
-                        <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                    </li>
-                    
-                    <li class="nav-item">
-                        <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                    </li>
-
-                    @if (SignInManager.IsSignedIn(User))
-                    {
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Hello @UserManager.GetUserName(User)</a>
-                        </li>
-                        
-                        <li class="nav-item">
-                            <form id="logoutForm" method="post" class="form-inline" asp-controller="Account"
-                                  asp-action="LogOff">
-                                <button type="submit" class="btn nav-link">Logout</button>
-                            </form>
-                        </li>
-                    }
-                    else
-                    {
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="Register">Register</a>
-                        </li>
-                        
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="Login">Login</a>
-                        </li>
-                    }
-                </ul>
-            </div>
-        </div>
-    </nav>
+   <nav class="navbar navbar-expand-sm navbar-toggleable-sm mb-3">
+       <div class="container">
+           <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">WebMarketplace</a>
+           <div class="header-right">
+               <ul class="navbar-nav flex-grow-1">
+                   @if (_signInManager.IsSignedIn(User))
+                   {
+                       <li class="nav-item">
+                           <a class="navbar-brand" href="#">@_userManager.GetUserName(User)</a>
+                       </li>
+                       <li class="nav-item">
+                           <form asp-area="" asp-controller="Account" asp-action="LogOff"><button class="btn">Logout</button></form>
+                       </li>
+                   }
+                   else
+                   {
+                       <li class="nav-item">
+                           <form asp-area="" asp-controller="Account" asp-action="Register"><button class="btn">Register</button></form>
+                       </li>
+                       <li class="nav-item">
+                           <form asp-area="" asp-controller="Account" asp-action="Login"><button class="btn">Login</button></form>
+                       </li>
+                   }
+               </ul>
+           </div>
+       </div>
+   </nav>
 </header>
 <div class="container">
     <main role="main" class="pb-3">
@@ -67,7 +50,7 @@
 
 <footer class="border-top footer text-muted">
     <div class="container">
-        &copy; 2022 - WebMarketplace - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+        &copy; 2022 - WebMarketplace 
     </div>
 </footer>
 <script src="~/lib/jquery/dist/jquery.min.js"></script>
