@@ -1,10 +1,89 @@
-﻿@using Microsoft.AspNetCore.Identity
-@model Good
+﻿@model IndexViewModel
+@using WebMarketplace.ViewModels
+@using WebMarketplace.Data
+@using Microsoft.AspNetCore.Identity
 
-
-@inject UserManager<IdentityUser> _userManager;
+@inject SignInManager<IdentityUser> _signInManager;
+@inject ApplicationDbContext _db;
 
 @{
     ViewData["Title"] = "Home Page";
+}
+
+<section class="new-product">
+    <div class="container">
+            @foreach (var good in _db.Products)
+            {
+                    <div class="product-card">
+                        <figure class="product-banner">
+                            <img src="@Url.Content(good.Picture)" alt="">
+                        </figure>
+                        
+                        <div class="product-content">
+                            <a href="#" class="h1 product-title text-center">@good.Title</a>
+                            <div class="Product-meta">
+                                <div class="product-price text-center">
+                                    <p>Cost:  
+                                    <data>@good.Cost</data>
+                                </div>
+                                <div class="product-quantity text-center">
+                                    <p>Quantity: 
+                                    <data>@good.Quantity</data>
+                                </div>
+                            </div>
+                        </div>
+                        
+                    </div>
+            }
+    </div>
+</section>
+
+@if (_signInManager.IsSignedIn(User))
+{
+    <div class="text-center">
+        <form asp-controller="Home" asp-action="Index" method="post" enctype="multipart/form-data" role="form">
+
+            <h1 class="register-h1">Add Product</h1>
+            <hr/>
+
+            <div asp-validation-summary="All" class="custom-text-danger"></div>
+
+            <div class="form-group">
+                <label asp-for="Title" class="text-form"></label>
+                <input asp-for="Title" class="form-control"/>
+                <span asp-validation-for="Title" class="custom-text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Description" class="text-form"></label>
+                <input asp-for="Description" class="form-control"/>
+                <span asp-validation-for="Description" class="custom-text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Quantity" class="text-form"></label>
+                <input asp-for="Quantity" class="form-control"/>
+                <span asp-validation-for="Quantity" class="custom-text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Cost" class="text-form"></label>
+                <input asp-for="Cost" class="form-control"/>
+                <span asp-validation-for="Cost" class="custom-text-danger"></span>
+            </div>
+            
+            <div class="form-group">
+                <label asp-for="Picture" class="text-form">Picture (The file must be uploaded and must be in the .jpg format.)</label>
+                <input class="form-control" type="file" name="uploadedFile"/>
+                <span asp-validation-for="Picture" class="custom-text-danger"></span>
+            </div>
+            <br/>
+
+            <p>
+                <button type="submit" class="btn">Add</button>
+            </p>
+
+        </form>
+    </div>
 }
 

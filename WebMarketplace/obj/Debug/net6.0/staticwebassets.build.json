@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "+pJu2143hmEjBWhLKQdMnnMFGOtBIAD89MVJ0ahhmSE=",
+  "Hash": "5EML3VUjVfDQYUvp6mIKsRrQEoHj4anQI7eTEmhwvho=",
   "Source": "WebMarketplace",
   "BasePath": "_content/WebMarketplace",
   "Mode": "Default",
@@ -1069,6 +1069,57 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\lib\\jquery\\LICENSE.txt"
+    },
+    {
+      "Identity": "C:\\Users\\neste\\RiderProjects\\WebMarketplace\\WebMarketplace\\wwwroot\\Pictures\\1.jpg",
+      "SourceId": "WebMarketplace",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\neste\\RiderProjects\\WebMarketplace\\WebMarketplace\\wwwroot\\",
+      "BasePath": "_content/WebMarketplace",
+      "RelativePath": "Pictures/1.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Pictures\\1.jpg"
+    },
+    {
+      "Identity": "C:\\Users\\neste\\RiderProjects\\WebMarketplace\\WebMarketplace\\wwwroot\\Pictures\\2.jpg",
+      "SourceId": "WebMarketplace",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\neste\\RiderProjects\\WebMarketplace\\WebMarketplace\\wwwroot\\",
+      "BasePath": "_content/WebMarketplace",
+      "RelativePath": "Pictures/2.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Pictures\\2.jpg"
+    },
+    {
+      "Identity": "C:\\Users\\neste\\RiderProjects\\WebMarketplace\\WebMarketplace\\wwwroot\\Pictures\\msg767949247-180656.jpg",
+      "SourceId": "WebMarketplace",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\neste\\RiderProjects\\WebMarketplace\\WebMarketplace\\wwwroot\\",
+      "BasePath": "_content/WebMarketplace",
+      "RelativePath": "Pictures/msg767949247-180656.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Pictures\\msg767949247-180656.jpg"
     }
   ]
 }

@@ -1,15 +1,18 @@
 :root {
-  --white: hsl(0, 0%, 100%); /*-*/
-  --black: hsl(0, 0%, 0%); /*-*/
-  --onyx-1: hsl(0, 0%, 24%); /*-*/
-  --light-gray: hsl(0, 0%, 80%); /*-*/
-  --field-drab: hsl(47, 98%, 22%); /*-*/
-  --red-crayola: hsl(356, 73%, 58%); /*-*/
-  --golden-puppy: hsl(47, 100%, 49%); /*-*/
-  --quick-silver: hsl(0, 0%, 63%); /*-*/
-  --rich-black-fogra-39: hsl(0, 0%, 2%); /*-*/
+  --white: hsl(0, 0%, 100%);
+  --black: hsl(0, 0%, 0%);
+  --onyx-1: hsl(0, 0%, 24%);
+  --onyx-2: hsl(0, 0%, 25%);
+  --light-gray: hsl(0, 0%, 80%);
+  --field-drab: hsl(47, 98%, 22%);
+  --red-crayola: hsl(356, 73%, 58%);
+  --golden-puppy: hsl(47, 100%, 49%);
+  --quick-silver: hsl(0, 0%, 63%);
+  --rich-black-fogra-39: hsl(0, 0%, 2%);
+  --eerie-black-1: hsl(0, 0%, 15%);
+  --eerie-black-2: hsl(0, 0%, 7%);
 
-  --ff-roboto: "Roboto", sans-serif; /*-*/
+  --ff-roboto: "Roboto", sans-serif;
 
   --fs-1: 32px;
   --fs-2: 20px;
@@ -24,6 +27,8 @@
 
   --fw-500: 500;
   --fw-700: 700;
+
+  --transition: 0.15s ease-in-out;
 }
 
 /*-----------------------------------*\
@@ -184,5 +189,78 @@ header .container {
 \*-----------------------------------*/
 
 .register-h1 {
+  color: var(--golden-puppy);
+}
+
+/*-----------------------------------*\
+ * #NEW PRODUCT, EXPLORE PRODUCT
+\*-----------------------------------*/
+
+.new-product {
+  background: var(--eerie-black-2);
+  padding: 60px 0;
+  text-align: center;
+}
+
+section {
+  margin-bottom: 40px;
+}
+
+.product-card {
+  background: var(--eerie-black-1);
+  padding: 18px;
+  border: 1px solid var(--onyx-2);
+  border-radius: 8px;
+  display: inline-block;
+  margin: 20px;
+}
+
+.product-banner {
+  position: relative;
+  height: 210px;
+  border-radius: 10px;
+  overflow: hidden;
+  margin-bottom: 25px;
+}
+
+.product-banner img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.product-title{
+  margin-bottom: 15px;
+  color: var(--light-gray);
+}
+
+.product-card:is(:hover, :focus) .product-title { 
+  color: var(--golden-puppy); 
+}
+
+.product-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 25px;
+}
+
+.product-price p{
+  font-weight: var(--fw-700);
+  color: var(--light-gray);
+}
+.product-price data {
+  font-size: var(--fs-3);
+  font-weight: var(--fw-700);
+  color: var(--golden-puppy);
+}
+
+.product-quantity p{
+  font-weight: var(--fw-700);
+  color: var(--light-gray);
+}
+.product-quantity data {
+  font-size: var(--fs-3);
+  font-weight: var(--fw-700);
   color: var(--golden-puppy);
 }

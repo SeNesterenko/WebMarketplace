@@ -32,7 +32,7 @@ namespace WebMarketplace.Controllers
         {
             if (!ModelState.IsValid) return View(loginViewModel);
             var result = await _signInManager.PasswordSignInAsync(loginViewModel.UserName, loginViewModel.Password,
-                loginViewModel.RememberMe, true);
+                false, true);
                 
             if (result.Succeeded) return RedirectToAction("Index", "Home");
 
@@ -51,7 +51,7 @@ namespace WebMarketplace.Controllers
         public async Task<IActionResult> Register(RegisterViewModel registerViewModel)
         {
             if (!ModelState.IsValid) return View(registerViewModel);
-            var user = new AppUser { UserName = registerViewModel.UserName,  };
+            var user = new AppUser { UserName = registerViewModel.UserName };
             var result = await _userManager.CreateAsync(user, registerViewModel.Password);
 
             if (result.Succeeded)

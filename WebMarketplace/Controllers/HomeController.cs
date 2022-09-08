@@ -1,22 +1,63 @@
 ﻿using System.Diagnostics;
+using System.IO;
+using System.Linq;
+using System.Security.Claims;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
+using WebMarketplace.Data;
 using WebMarketplace.Models;
+using WebMarketplace.ViewModels;
 
 namespace WebMarketplace.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
+        private readonly IWebHostEnvironment _appEnvironment;
+        private readonly ApplicationDbContext _db;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ApplicationDbContext db, IWebHostEnvironment appEnvironment)
         {
-            _logger = logger;
+            _db = db;
+            _appEnvironment = appEnvironment;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
             return View();
+        }
+        
+        [HttpPost]
+        public async Task<IActionResult> Index(IndexViewModel indexViewModel, IFormFile uploadedFile)
+        {
+            const string permittedExtensions = ".jpg";
+            
+            if (!ModelState.IsValid || uploadedFile == null) return View(indexViewModel);
+            if (!permittedExtensions.Contains(uploadedFile.ToString() ?? string.Empty)) return View(indexViewModel);
+
+            var currentUser = User;
+            var user = currentUser.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            var owner = _db.Users.First(id => id.Id == user);
+
+            var path = "/Pictures/" + uploadedFile.FileName;
+
+            await using (var fileStream = new FileStream(_appEnvironment.WebRootPath + path, FileMode.Create))
+            {
+                await uploadedFile.CopyToAsync(fileStream);
+            }
+            
+            _db.Add(new Good
+            {
+                Title = indexViewModel.Title,
+                Description = indexViewModel.Description,
+                Cost = indexViewModel.Cost,
+                Quantity = indexViewModel.Quantity,
+                Picture = path,
+                User = owner
+            });
+            await _db.SaveChangesAsync();
+            return RedirectToAction("Index");
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
