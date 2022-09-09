@@ -200,6 +200,13 @@ header .container {
   background: var(--eerie-black-2);
   padding: 60px 0;
   text-align: center;
+  margin-top: 300px;
+}
+
+.new-product-authorized {
+  background: var(--eerie-black-2);
+  padding: 60px 0;
+  text-align: center;
 }
 
 section {
@@ -264,3 +271,27 @@ section {
   font-weight: var(--fw-700);
   color: var(--golden-puppy);
 }
+
+/*-----------------------------------*\
+ * #Profile
+\*-----------------------------------*/
+
+.profile {
+  max-width: 65%;
+  margin: 0 auto;
+  padding-top: 25px;
+  height: 1px;
+}
+
+.image {
+  float: left;
+}
+
+.profile-data {
+  float: right;
+}
+
+/*-----------------------------------*\
+ * #Balance
+\*-----------------------------------*/
+

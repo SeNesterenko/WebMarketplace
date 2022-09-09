@@ -34,7 +34,7 @@ namespace WebMarketplace.Controllers
             const string permittedExtensions = ".jpg";
             
             if (!ModelState.IsValid || uploadedFile == null) return View(indexViewModel);
-            if (!permittedExtensions.Contains(uploadedFile.ToString() ?? string.Empty)) return View(indexViewModel);
+            if (!uploadedFile.FileName.Contains(permittedExtensions)) return View(indexViewModel);
 
             var currentUser = User;
             var user = currentUser.FindFirst(ClaimTypes.NameIdentifier)?.Value;

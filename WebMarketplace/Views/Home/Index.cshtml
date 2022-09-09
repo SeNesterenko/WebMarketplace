@@ -2,6 +2,7 @@
 @using WebMarketplace.ViewModels
 @using WebMarketplace.Data
 @using Microsoft.AspNetCore.Identity
+@using System.Security.Claims
 
 @inject SignInManager<IdentityUser> _signInManager;
 @inject ApplicationDbContext _db;
@@ -9,37 +10,56 @@
 @{
     ViewData["Title"] = "Home Page";
 }
-
-<section class="new-product">
-    <div class="container">
-            @foreach (var good in _db.Products)
-            {
-                    <div class="product-card">
-                        <figure class="product-banner">
-                            <img src="@Url.Content(good.Picture)" alt="">
-                        </figure>
-                        
-                        <div class="product-content">
-                            <a href="#" class="h1 product-title text-center">@good.Title</a>
-                            <div class="Product-meta">
-                                <div class="product-price text-center">
-                                    <p>Cost:  
-                                    <data>@good.Cost</data>
-                                </div>
-                                <div class="product-quantity text-center">
-                                    <p>Quantity: 
-                                    <data>@good.Quantity</data>
-                                </div>
-                            </div>
-                        </div>
-                        
-                    </div>
-            }
-    </div>
-</section>
-
 @if (_signInManager.IsSignedIn(User))
 {
+    <div class="profile">
+        <div class="image">
+            @{
+                var currentUser = User;
+                var user = currentUser.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+                var owner = _db.Users.First(id => id.Id == user);
+                var countOfProducts = _db.Products.Count(good => good.User.Id == owner.Id);
+                var goods = from good in _db.Products where good.User.Id != owner.Id select good;
+            }
+            <img src="@Url.Content(owner.Picture)" alt="">
+        </div>
+
+        <div class="profile-data">
+            <h1 style="color: var(--golden-puppy)">@owner.UserName</h1>
+            <h3 style="color: whitesmoke">Money: <span style="color: var(--golden-puppy)">@owner.Money</span></h3>
+            <h3 style="color: whitesmoke">Number Of Products for Sale: <span style="color: var(--golden-puppy)">@countOfProducts</span></h3>
+        </div>
+    </div>
+    
+    <section class="new-product">
+        <div class="container">
+
+            @foreach (var good in goods)
+            {
+                <div class="product-card">
+                    <figure class="product-banner">
+                        <img src="@Url.Content(good.Picture)" alt="">
+                    </figure>
+
+                    <div class="product-content">
+                        <a href="#" class="h1 product-title text-center">@good.Title</a>
+                        <div class="Product-meta">
+                            <div class="product-price text-center">
+                                <p>Cost:
+                                <data>@good.Cost</data>
+                            </div>
+                            <div class="product-quantity text-center">
+                                <p>Quantity:
+                                <data>@good.Quantity</data>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            }
+        </div>
+    </section>
+    
     <div class="text-center">
         <form asp-controller="Home" asp-action="Index" method="post" enctype="multipart/form-data" role="form">
 
@@ -73,7 +93,7 @@
             </div>
             
             <div class="form-group">
-                <label asp-for="Picture" class="text-form">Picture (The file must be uploaded and must be in the .j format.)</label>
+                <label asp-for="Picture" class="text-form">Picture (The file must be uploaded and must be in the .jpg format.)</label>
                 <input class="form-control" type="file" name="uploadedFile"/>
                 <span asp-validation-for="Picture" class="custom-text-danger"></span>
             </div>
@@ -86,4 +106,34 @@
         </form>
     </div>
 }
+else
+{
+    <section class="new-product-authorized">
+        <div class="container">
 
+            @foreach (var good in _db.Products)
+            {
+                <div class="product-card">
+                    <figure class="product-banner">
+                        <img src="@Url.Content(good.Picture)" alt="">
+                    </figure>
+
+                    <div class="product-content">
+                        <a href="#" class="h1 product-title text-center">@good.Title</a>
+                        <div class="Product-meta">
+                            <div class="product-price text-center">
+                                <p>Cost:
+                                <data>@good.Cost</data>
+                            </div>
+                            <div class="product-quantity text-center">
+                                <p>Quantity:
+                                <data>@good.Quantity</data>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            }
+        </div>
+    </section>
+}

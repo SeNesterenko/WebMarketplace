@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "5EML3VUjVfDQYUvp6mIKsRrQEoHj4anQI7eTEmhwvho=",
+  "Hash": "CEt4U95akEd2OuAxzzUM0R2jUzkCgamgsDl8+uGYg5Q=",
   "Source": "WebMarketplace",
   "BasePath": "_content/WebMarketplace",
   "Mode": "Default",
@@ -1103,23 +1103,6 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\Pictures\\2.jpg"
-    },
-    {
-      "Identity": "C:\\Users\\neste\\RiderProjects\\WebMarketplace\\WebMarketplace\\wwwroot\\Pictures\\msg767949247-180656.jpg",
-      "SourceId": "WebMarketplace",
-      "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\neste\\RiderProjects\\WebMarketplace\\WebMarketplace\\wwwroot\\",
-      "BasePath": "_content/WebMarketplace",
-      "RelativePath": "Pictures/msg767949247-180656.jpg",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\Pictures\\msg767949247-180656.jpg"
     }
   ]
 }

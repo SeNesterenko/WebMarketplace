@@ -51,7 +51,7 @@ namespace WebMarketplace.Controllers
         public async Task<IActionResult> Register(RegisterViewModel registerViewModel)
         {
             if (!ModelState.IsValid) return View(registerViewModel);
-            var user = new AppUser { UserName = registerViewModel.UserName };
+            var user = new AppUser { UserName = registerViewModel.UserName, Picture = "/Pictures/2.jpg"};
             var result = await _userManager.CreateAsync(user, registerViewModel.Password);
 
             if (result.Succeeded)
