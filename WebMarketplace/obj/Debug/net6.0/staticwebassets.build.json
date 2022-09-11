@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "CEt4U95akEd2OuAxzzUM0R2jUzkCgamgsDl8+uGYg5Q=",
+  "Hash": "Y9/CqtzoJOcbSTVfekhsn/iFXb24mmLjYzlH44HXm5I=",
   "Source": "WebMarketplace",
   "BasePath": "_content/WebMarketplace",
   "Mode": "Default",
@@ -1088,6 +1088,23 @@
       "OriginalItemSpec": "wwwroot\\Pictures\\1.jpg"
     },
     {
+      "Identity": "C:\\Users\\neste\\RiderProjects\\WebMarketplace\\WebMarketplace\\wwwroot\\Pictures\\1000_F_196201978_vVatGP4ba0wfZqJ63MHmmNt6H3uXZfkL.jpg",
+      "SourceId": "WebMarketplace",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\neste\\RiderProjects\\WebMarketplace\\WebMarketplace\\wwwroot\\",
+      "BasePath": "_content/WebMarketplace",
+      "RelativePath": "Pictures/1000_F_196201978_vVatGP4ba0wfZqJ63MHmmNt6H3uXZfkL.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Pictures\\1000_F_196201978_vVatGP4ba0wfZqJ63MHmmNt6H3uXZfkL.jpg"
+    },
+    {
       "Identity": "C:\\Users\\neste\\RiderProjects\\WebMarketplace\\WebMarketplace\\wwwroot\\Pictures\\2.jpg",
       "SourceId": "WebMarketplace",
       "SourceType": "Discovered",
@@ -1103,6 +1120,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\Pictures\\2.jpg"
+    },
+    {
+      "Identity": "C:\\Users\\neste\\RiderProjects\\WebMarketplace\\WebMarketplace\\wwwroot\\Pictures\\3dea6830-f5ad-43b9-9066-b9c17499c04e.jpg",
+      "SourceId": "WebMarketplace",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\neste\\RiderProjects\\WebMarketplace\\WebMarketplace\\wwwroot\\",
+      "BasePath": "_content/WebMarketplace",
+      "RelativePath": "Pictures/3dea6830-f5ad-43b9-9066-b9c17499c04e.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Pictures\\3dea6830-f5ad-43b9-9066-b9c17499c04e.jpg"
     }
   ]
 }

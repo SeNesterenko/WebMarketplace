@@ -13,7 +13,7 @@
 @if (_signInManager.IsSignedIn(User))
 {
     <div class="profile">
-        <div class="image">
+        <div class="image" data-title="Change Avatar">
             @{
                 var currentUser = User;
                 var user = currentUser.FindFirst(ClaimTypes.NameIdentifier)?.Value;
@@ -21,7 +21,13 @@
                 var countOfProducts = _db.Products.Count(good => good.User.Id == owner.Id);
                 var goods = from good in _db.Products where good.User.Id != owner.Id select good;
             }
-            <img src="@Url.Content(owner.Picture)" alt="">
+            <input type="checkbox" id="avatar-modal">
+            <label class="change-avatar-label" for="avatar-modal"><img style="border-radius: 50px" width="200" height="220" src="@Url.Content(owner.Picture)" alt="" class="change-avatar"></label>
+            
+            <form asp-area="" asp-controller="Home" asp-action="ChangeAvatar" class="popup-avatar" enctype="multipart/form-data">
+                <input type="file" name="uploadedFile" style="border-radius: 5px"/>
+                <input type="submit" class="button-submit-avatar" value="Download">
+            </form>
         </div>
 
         <div class="profile-data">
@@ -95,7 +101,6 @@
             <div class="form-group">
                 <label asp-for="Picture" class="text-form">Picture (The file must be uploaded and must be in the .jpg format.)</label>
                 <input class="form-control" type="file" name="uploadedFile"/>
-                <span asp-validation-for="Picture" class="custom-text-danger"></span>
             </div>
             <br/>
 

@@ -285,10 +285,49 @@ section {
 
 .image {
   float: left;
+  cursor: pointer;
 }
 
 .profile-data {
   float: right;
+}
+
+.image:hover::after {
+  content: attr(data-title);
+  position: absolute;
+  z-index: 1;
+  background: rgba(255,255,230,0.5);
+  font-size: 20px;
+  left: 20%; top: 30%;
+  padding: 5px 10px;
+  transition: .5s all;
+  border-radius: 50px;
+}
+
+.change-avatar-label {
+  cursor: pointer;
+}
+
+.popup-avatar {
+  display: block;
+  position: relative;
+  transition: .5s all;
+  top: -999px;
+}
+
+#avatar-modal {
+  display: none;
+}
+
+#avatar-modal:checked ~ .popup-avatar{
+  top: 0;
+}
+
+.button-submit-avatar {
+  background-color: var(--golden-puppy);
+  cursor: pointer;
+  border-radius: 5px;
+  margin-top: 5px;
 }
 
 /*-----------------------------------*\

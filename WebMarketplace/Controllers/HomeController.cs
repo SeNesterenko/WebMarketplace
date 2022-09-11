@@ -35,11 +35,8 @@ namespace WebMarketplace.Controllers
             
             if (!ModelState.IsValid || uploadedFile == null) return View(indexViewModel);
             if (!uploadedFile.FileName.Contains(permittedExtensions)) return View(indexViewModel);
-
-            var currentUser = User;
-            var user = currentUser.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-            var owner = _db.Users.First(id => id.Id == user);
-
+            
+            var owner = GetUser();
             var path = "/Pictures/" + uploadedFile.FileName;
 
             await using (var fileStream = new FileStream(_appEnvironment.WebRootPath + path, FileMode.Create))
@@ -63,13 +60,22 @@ namespace WebMarketplace.Controllers
         [HttpPost]
         public async Task<IActionResult> TopUpBalance(IndexViewModel indexViewModel)
         {
-            var currentUser = User;
-            var user = currentUser.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-            var owner = _db.Users.First(id => id.Id == user);
+            var user = GetUser();
 
-            owner.Money += indexViewModel.Money;
+            user.Money += indexViewModel.Money;
             await _db.SaveChangesAsync();
 
+            return RedirectToAction("Index");
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> ChangeAvatar(IFormFile uploadedFile)
+        {
+            var user = GetUser();
+            var path = CreateFileAndReturnPath(uploadedFile);
+            user.Picture = await path;
+            
+            await _db.SaveChangesAsync();
             return RedirectToAction("Index");
         }
 
@@ -77,6 +83,25 @@ namespace WebMarketplace.Controllers
         public IActionResult Error()
         {
             return View(new ErrorViewModel {RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier});
+        }
+
+        private AppUser GetUser()
+        {
+            var claimsPrincipal = User;
+            var user = claimsPrincipal.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            var currentUser = _db.Users.First(id => id.Id == user);
+
+            return currentUser;
+        }
+
+        private async Task<string> CreateFileAndReturnPath(IFormFile uploadedFile)
+        {
+            var path = "/Pictures/" + uploadedFile.FileName;
+
+            await using var fileStream = new FileStream(_appEnvironment.WebRootPath + path, FileMode.Create);
+            await uploadedFile.CopyToAsync(fileStream);
+
+            return path;
         }
     }
 }
