@@ -18,6 +18,7 @@ namespace WebMarketplace.ViewModels
         public int Quantity { get; set; }
         
         public string Picture { get; set; }
+        public int Money { get; set; }
         public AppUser User { get; set; }
     }
 }

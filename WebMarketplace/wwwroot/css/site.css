@@ -295,3 +295,47 @@ section {
  * #Balance
 \*-----------------------------------*/
 
+.activate-balance {
+  color: var(--golden-puppy);
+  font-size: var(--fs-4);
+  font-weight: var(--fw-500);
+  margin-top: 9px;
+  cursor: pointer;
+}
+
+.activate-balance:hover {
+  color: var(--field-drab);
+}
+
+.popup {
+  display: block;
+  position: relative;
+  transition: .5s all;
+  top: -999px;
+}
+
+.popup span {
+  color: var(--quick-silver);
+}
+
+.popup input {
+  display: block;
+  border: none;
+  height: 25px;
+  line-height: 25px;
+  margin: 10px 0;
+}
+
+.button-submit-balance {
+  background-color: var(--golden-puppy);
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+#balance-modal {
+  display: none;
+}
+
+#balance-modal:checked ~ .popup {
+  top: 0;
+}

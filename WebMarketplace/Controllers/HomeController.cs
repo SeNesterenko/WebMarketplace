@@ -60,6 +60,19 @@ namespace WebMarketplace.Controllers
             return RedirectToAction("Index");
         }
 
+        [HttpPost]
+        public async Task<IActionResult> TopUpBalance(IndexViewModel indexViewModel)
+        {
+            var currentUser = User;
+            var user = currentUser.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            var owner = _db.Users.First(id => id.Id == user);
+
+            owner.Money += indexViewModel.Money;
+            await _db.SaveChangesAsync();
+
+            return RedirectToAction("Index");
+        }
+
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {

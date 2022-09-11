@@ -1,4 +1,6 @@
-﻿@using Microsoft.AspNetCore.Identity
+﻿@model IndexViewModel
+@using WebMarketplace.ViewModels
+@using Microsoft.AspNetCore.Identity
 
 @inject SignInManager<IdentityUser> _signInManager;
 @inject UserManager<IdentityUser> _userManager;
@@ -16,14 +18,21 @@
 <header>
    <nav class="navbar navbar-expand-sm navbar-toggleable-sm mb-3">
        <div class="container">
-           <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">WebMarketplace</a>
+           <a class="navbar-brand h1" asp-area="" asp-controller="Home" asp-action="Index">WebMarketplace</a>
            <div class="header-right">
                <ul class="navbar-nav flex-grow-1">
                    @if (_signInManager.IsSignedIn(User))
                    {
                         <li class="nav-item">
-                           <a class="navbar-brand" href="#">Top up Balance</a>
+                            <input type="checkbox" id="balance-modal">
+                            <label class="activate-balance" for="balance-modal"> Top up Balance</label>
+                            <form asp-area="" asp-controller="Home" asp-action="TopUpBalance" class="popup">
+                                <span>Credit amount</span>
+                                <input asp-for="Money" type="text" style="background-color: var(--light-gray); border-radius: 5px">
+                                <input type="submit" class="button-submit-balance" value="Top up">
+                            </form>
                        </li>
+
                        <li class="nav-item">
                            <a class="navbar-brand" href="#">Basket</a>
                        </li>
