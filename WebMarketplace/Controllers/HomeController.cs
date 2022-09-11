@@ -58,11 +58,11 @@ namespace WebMarketplace.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> TopUpBalance(IndexViewModel indexViewModel)
+        public async Task<IActionResult> TopUpBalance(int money)
         {
             var user = GetUser();
 
-            user.Money += indexViewModel.Money;
+            user.Money += money;
             await _db.SaveChangesAsync();
 
             return RedirectToAction("Index");
@@ -71,13 +71,18 @@ namespace WebMarketplace.Controllers
         [HttpPost]
         public async Task<IActionResult> ChangeAvatar(IFormFile uploadedFile)
         {
+            const string permittedExtensions = ".jpg";
+            
+            if (uploadedFile == null) return RedirectToAction("Index", "Home");
+            if (!uploadedFile.FileName.Contains(permittedExtensions))  return RedirectToAction("Index", "Home");
+            
             var user = GetUser();
             var path = CreateFileAndReturnPath(uploadedFile);
             user.Picture = await path;
             
             await _db.SaveChangesAsync();
             return RedirectToAction("Index");
-        }
+         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()

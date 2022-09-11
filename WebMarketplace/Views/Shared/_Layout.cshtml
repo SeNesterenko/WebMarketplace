@@ -1,9 +1,10 @@
-﻿@model IndexViewModel
-@using WebMarketplace.ViewModels
+﻿@using WebMarketplace.ViewModels
 @using Microsoft.AspNetCore.Identity
 
 @inject SignInManager<IdentityUser> _signInManager;
 @inject UserManager<IdentityUser> _userManager;
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -28,7 +29,7 @@
                             <label class="activate-balance" for="balance-modal"> Top up Balance</label>
                             <form asp-area="" asp-controller="Home" asp-action="TopUpBalance" class="popup">
                                 <span>Credit amount</span>
-                                <input asp-for="Money" type="text" style="background-color: var(--light-gray); border-radius: 5px">
+                                <input name="money" type="text" style="background-color: var(--light-gray); border-radius: 5px">
                                 <input type="submit" class="button-submit-balance" value="Top up">
                             </form>
                        </li>
