@@ -9,5 +9,6 @@ namespace WebMarketplace.Models
         public string Picture { get; set; }
         
         public List<Good> Goods { get; set; }
+        public Basket Basket { get; set; }
     }
 }

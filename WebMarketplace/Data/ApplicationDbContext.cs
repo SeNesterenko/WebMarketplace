@@ -13,5 +13,6 @@ namespace WebMarketplace.Data
 
         public DbSet<Good> Products { get; set; }
         public DbSet<AppUser> Users { get; set; }
+        public DbSet<Basket> Baskets { get; set; }
     }
 }

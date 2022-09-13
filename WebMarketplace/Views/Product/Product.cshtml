@@ -1,0 +1,34 @@
+@model ProductViewModel
+@using WebMarketplace.ViewModels
+
+<div class="container-selected-product">
+        <div class="left-column">
+            <img height="500" src="@Url.Content(Model.Good.Picture)" alt=""/>
+        </div>
+
+    <div class="right-column">
+
+        <div class="product-description">
+            <h1>@Model.Good.Title</h1>
+            <span>@Model.Good.Description</span>
+            <br/>
+            <p>Quantity: <data>@Model.Good.Quantity</data></p>
+            <p>Seller: <data>@Model.Seller.UserName</data></p>
+        </div>
+
+        <div class="product-cost">
+            <form asp-controller="Product" asp-action="PutTheProductInTheBasket" 
+                  asp-route-goodId="@Model.Good.Id" asp-route-customerId="@Model.Customer.Id" asp-route-sellerId="@Model.Seller.Id"
+                  method="post" role="form">
+                <p>Cost: <data>@Model.Good.Cost</data></p>
+                
+                <input asp-for="Quantity" class="form-control"/>
+                <span asp-validation-for="Quantity" class="custom-text-danger"></span>
+                <button type="submit" class="btn">Add to Basket</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+

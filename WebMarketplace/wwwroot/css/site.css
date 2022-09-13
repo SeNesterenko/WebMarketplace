@@ -193,7 +193,7 @@ header .container {
 }
 
 /*-----------------------------------*\
- * #NEW PRODUCT, EXPLORE PRODUCT
+ * #Products
 \*-----------------------------------*/
 
 .new-product {
@@ -240,8 +240,8 @@ section {
   color: var(--light-gray);
 }
 
-.product-card:is(:hover, :focus) .product-title { 
-  color: var(--golden-puppy); 
+.product-title:hover {
+  color: var(--golden-puppy);
 }
 
 .product-meta {
@@ -376,4 +376,125 @@ section {
 
 #balance-modal:checked ~ .popup {
   top: 0;
+}
+
+/*-----------------------------------*\
+ * #Product
+\*-----------------------------------*/
+
+.container-selected-product {
+  max-width: 1200px;
+  height: 590px;
+  margin: 0 auto;
+  padding: 15px;
+  display: flex;
+}
+
+.left-column {
+  width: 65%;
+  position: relative;
+  margin-right: 100px;
+  margin-top: 30px;
+}
+
+.right-column {
+  width: 35%;
+  margin-top: 30px;
+}
+
+.left-column img {
+  width: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  transition: all 0.3s ease;
+}
+
+.product-description {
+  border-bottom: 1px solid #E1E8EE;
+  margin-bottom: 20px;
+}
+
+.product-description span {
+  font-size: 12px;
+  color: #358ED7;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  text-decoration: none;
+}
+
+.product-description h1 {
+  font-weight: 300;
+  font-size: 52px;
+  color: #43484D;
+  letter-spacing: -2px;
+  margin-bottom: 60px;
+}
+
+.product-description p {
+  font-size: 18px;
+  font-weight: 500;
+  color: #86939E;
+  line-height: 24px;
+}
+
+.product-description data {
+  color: var(--golden-puppy);
+}
+
+.product-cost {
+  display: flex;
+  align-items: center;
+}
+
+.product-cost p {
+  font-size: 18px;
+  font-weight: 500;
+  color: #86939E;
+  line-height: 24px;
+}
+
+.product-cost data {
+  color: var(--golden-puppy);
+}
+
+.product-cost span {
+  font-size: 26px;
+  font-weight: 300;
+  color: #43474D;
+  margin-right: 20px;
+}
+
+.cart-btn {
+  display: inline-block;
+  background-color: var(--golden-puppy);
+  border-radius: 6px;
+  font-size: 16px;
+  color: var(--rich-black-fogra-39);
+  text-decoration: none;
+  padding: 12px 30px;
+  transition: all .5s;
+  margin-left: 20px;
+}
+
+.cart-btn:hover {
+  background-color: #64af3d;
+}
+
+.product-cost button{
+  margin-top: 15px;
+}
+
+/*-----------------------------------*\
+ * #Purchase Was Successful
+\*-----------------------------------*/
+
+.PurchaseWasSuccessful {
+  height: 390px;
+}
+
+.PurchaseWasSuccessful h1 {
+  margin-top: 15%;
+  text-align: center;
+  color: var(--red-crayola);
 }

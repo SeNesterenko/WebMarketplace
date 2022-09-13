@@ -17,18 +17,15 @@ namespace WebMarketplace.Controllers
             _signInManager = signInManager;
         }
         
-        public IActionResult Login(string? returnUrl = null)
+        public IActionResult Login()
         {
-            var loginViewModel = new LoginViewModel
-            {
-                ReturnUrl = returnUrl ?? Url.Content("~/")
-            };
+            var loginViewModel = new LoginViewModel();
             return View(loginViewModel); 
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Login(LoginViewModel loginViewModel, string? returnUrl)
+        public async Task<IActionResult> Login(LoginViewModel loginViewModel)
         {
             if (!ModelState.IsValid) return View(loginViewModel);
             var result = await _signInManager.PasswordSignInAsync(loginViewModel.UserName, loginViewModel.Password,
@@ -51,7 +48,7 @@ namespace WebMarketplace.Controllers
         public async Task<IActionResult> Register(RegisterViewModel registerViewModel)
         {
             if (!ModelState.IsValid) return View(registerViewModel);
-            var user = new AppUser { UserName = registerViewModel.UserName, Picture = "/Pictures/2.jpg"};
+            var user = new AppUser { UserName = registerViewModel.UserName, Picture = "/Pictures/2.jpg", Basket = new Basket()};
             var result = await _userManager.CreateAsync(user, registerViewModel.Password);
 
             if (result.Succeeded)

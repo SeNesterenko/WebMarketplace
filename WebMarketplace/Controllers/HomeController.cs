@@ -53,6 +53,7 @@ namespace WebMarketplace.Controllers
                 Picture = path,
                 User = owner
             });
+            
             await _db.SaveChangesAsync();
             return RedirectToAction("Index");
         }

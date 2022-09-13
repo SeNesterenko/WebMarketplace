@@ -48,7 +48,9 @@
                     </figure>
 
                     <div class="product-content">
-                        <a href="#" class="h1 product-title text-center">@good.Title</a>
+                        
+                        <a asp-controller="Product" asp-action="Product" asp-route-goodId="@good.Id" asp-route-customerId="@owner.Id" 
+                           class="h1 product-title text-center">@good.Title</a>
                         <div class="Product-meta">
                             <div class="product-price text-center">
                                 <p>Cost:
@@ -120,7 +122,7 @@ else
             {
                 <div class="product-card">
                     <figure class="product-banner">
-                        <img src="@Url.Content(good.Picture)" alt="">
+                        <img width="210" src="@Url.Content(good.Picture)" alt="">
                     </figure>
 
                     <div class="product-content">
